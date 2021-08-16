@@ -12,15 +12,14 @@ public class BlackJackApp {
 
 	public static void main(String[] args) {
 
-		System.out.println("Welcome to the Blackjack App");
 		BlackJackApp app = new BlackJackApp();
 		app.startMenu();
 	}
 
 	public void startMenu() {
 
-		System.out.println("Welcome to Blackjack!");
-		System.out.println("would you like to play? * press 1 for yes * :: * press 2 for quit*");
+		System.out.println("**** 🃏 Welcome to Blackjack! 🃏 ****");
+		System.out.println("Would you like to play? * 1. Yes  ::  2.  No *");
 		selection = sc.nextInt();
 		switch (selection) {
 
