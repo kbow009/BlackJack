@@ -1,41 +1,55 @@
 package com.skilldistillery.blackjack.app;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Objects;
 import java.util.Scanner;
-
-import com.skilldistillery.blackjack.entities.Card;
-import com.skilldistillery.blackjack.entities.Deck;
+import java.util.List;
+import com.skilldistillery.blackjack.entities.*;
 
 public class BlackJackApp {
+	Table table = new Table();
+	Scanner sc = new Scanner(System.in);
+	int selection;
+
 	public static void main(String[] args) {
+
+		System.out.println("Welcome to the Blackjack App");
 		BlackJackApp app = new BlackJackApp();
 		app.startMenu();
 	}
 
-	private void startMenu() {
-		Deck deck = new Deck();
-		Scanner sc = new Scanner(System.in);
-		try {
-			
-		System.out.println("How many cards would you like?");
-		int numCards = sc.nextInt();
-		sc.nextLine();
-		
-		
-		List<Card> hand = new ArrayList<>();
-		for(int numReq = 0; numReq < numCards; numReq++) {
-			hand.add(deck.dealCard());
-			
+	public void startMenu() {
+
+		System.out.println("Welcome to Blackjack!");
+		System.out.println("would you like to play? * press 1 for yes * :: * press 2 for quit*");
+		selection = sc.nextInt();
+		switch (selection) {
+
+		case 1:
+			table.startGame();
+			break;
+		case 2:
+			System.out.println("Leaving table. ");
+			break;
+		default:
+			System.out.println("Invalid Selection, Please choose 1 or 2");
+
 		}
-		for (Card card : hand) {
-			
-		}
-		} catch (Exception e) {
-		
-		}
-		
-		
-	sc.close();	
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(sc, selection, table);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		BlackJackApp other = (BlackJackApp) obj;
+		return Objects.equals(sc, other.sc) && selection == other.selection && Objects.equals(table, other.table);
 	}
 }
